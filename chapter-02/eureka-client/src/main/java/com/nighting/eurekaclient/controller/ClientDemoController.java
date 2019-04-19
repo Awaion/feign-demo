@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +13,9 @@ import java.util.Map;
 public class ClientDemoController {
 
     @GetMapping("/helloGet")
-    public Map<String, Object> helloGet(HttpServletRequest request) {
+    public Map<String, Object> helloGet(String name, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
         map.put("getAuthType", request.getAuthType());
         map.put("getContextPath", request.getContextPath());
         map.put("getCookies", request.getCookies());
@@ -26,24 +26,27 @@ public class ClientDemoController {
     }
 
     @PostMapping("/helloPost")
-    public Map<String, Object> helloPost(HttpServletRequest request) {
+    public Map<String, Object> helloPost(String name, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
         map.put("getHeaderName", request.getHeader("name"));
         map.put("getHeaderContentType", request.getHeader("Content-Type"));
         return map;
     }
 
     @PostMapping("/helloPostText")
-    public Map<String, Object> helloPostText(HttpServletRequest request) {
+    public Map<String, Object> helloPostText(@RequestBody String name, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
         map.put("getHeaderName", request.getHeader("name"));
         map.put("getHeaderContentType", request.getHeader("Content-Type"));
         return map;
     }
 
     @PostMapping("/helloPostJson")
-    public Map<String, Object> helloPostJson(HttpServletRequest request) {
+    public Map<String, Object> helloPostJson(@RequestBody Map<String, Object> param, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
+        map.put("name", param.get("name"));
         map.put("getHeaderName", request.getHeader("name"));
         map.put("getHeaderContentType", request.getHeader("Content-Type"));
         return map;

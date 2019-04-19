@@ -10,10 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <!--
-        <module>chapter-01</module>
         <module>chapter-02</module>
         -->
+        <module>chapter-01</module>
     </modules>
-
 
 </project>

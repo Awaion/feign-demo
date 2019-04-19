@@ -1,234 +1,225 @@
 {
 	"info": {
-		"_postman_id": "ca0c06b1-fee1-4e97-ba1d-9eda60a2e2d3",
+		"_postman_id": "bc10d3a2-eca5-458f-bcdc-b11a0e562f44",
 		"name": "Feign",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "chapter01",
 			"item": [
 				{
-					"name": "01helloGet",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8801/helloGet?name=name",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloGet"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "name"
+					"name": "client",
+					"item": [
+						{
+							"name": "01helloGet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8801/helloGet?name=urlname",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloGet"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "urlname"
+										}
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "02helloPost",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "name",
-									"type": "text"
-								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8801/helloPost",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloPost"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "03helloPostText",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "text"
+						{
+							"name": "02helloPostFormData",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://localhost:8801/helloPostFormData"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8801/helloPostText",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloPostText"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "04helloPostJson",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"body\"\n}"
+						{
+							"name": "03helloPostUrlencoded",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://localhost:8801/helloPostUrlencoded"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8801/helloPostJson",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloPostJson"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "05helloGet",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
+						{
+							"name": "04helloPostText",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "text"
+								},
+								"url": "http://localhost:8801/helloPostText"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloGet?name=name",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloGet"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "name"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "06helloPost",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "name",
-									"type": "text"
-								}
-							]
+						{
+							"name": "05helloPostTextPlain",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "text/plain"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "text"
+								},
+								"url": "http://localhost:8801/helloPostTextPlain"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloPost",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloPost"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "07helloPostText",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "text"
+						{
+							"name": "06helloPostJson",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"body\"\n}"
+								},
+								"url": "http://localhost:8801/helloPostJson"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloPostText",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloPostText"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "08helloPostJson",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"body\"\n}"
+						{
+							"name": "07helloPostJavascript",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/javascript"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"body\"\n}"
+								},
+								"url": "http://localhost:8801/helloPostJavascript"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloPostJson",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloPostJson"
-							]
+						{
+							"name": "08helloPostXml",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/xml",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"body\"\n}"
+								},
+								"url": "http://localhost:8801/helloPostXml"
+							},
+							"response": []
+						},
+						{
+							"name": "09helloPostTextXml",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "text/xml",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"body\"\n}"
+								},
+								"url": "http://localhost:8801/helloPostTextXml"
+							},
+							"response": []
+						},
+						{
+							"name": "10helloPostTextHtml",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "text/html",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"body\"\n}"
+								},
+								"url": "http://localhost:8801/helloPostTextHtml"
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
@@ -250,17 +241,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": {
-							"raw": "http://localhost:8801/helloGet",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloGet"
-							]
-						}
+						"url": "http://localhost:8801/helloGet"
 					},
 					"response": []
 				},
@@ -275,18 +256,11 @@
 								"type": "text"
 							}
 						],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8801/helloPost",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloPost"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8801/helloPost"
 					},
 					"response": []
 				},
@@ -305,17 +279,7 @@
 							"mode": "raw",
 							"raw": "text"
 						},
-						"url": {
-							"raw": "http://localhost:8801/helloPostText",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloPostText"
-							]
-						}
+						"url": "http://localhost:8801/helloPostText"
 					},
 					"response": []
 				},
@@ -340,17 +304,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": {
-							"raw": "http://localhost:8801/helloPostJson",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8801",
-							"path": [
-								"helloPostJson"
-							]
-						}
+						"url": "http://localhost:8801/helloPostJson"
 					},
 					"response": []
 				},
@@ -404,17 +358,7 @@
 								}
 							]
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloPost",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloPost"
-							]
-						}
+						"url": "http://localhost:8901/helloPost"
 					},
 					"response": []
 				},
@@ -427,17 +371,7 @@
 							"mode": "raw",
 							"raw": "text"
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloPostText",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloPostText"
-							]
-						}
+						"url": "http://localhost:8901/helloPostText"
 					},
 					"response": []
 				},
@@ -457,17 +391,7 @@
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"body\"\n}"
 						},
-						"url": {
-							"raw": "http://localhost:8901/helloPostJson",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8901",
-							"path": [
-								"helloPostJson"
-							]
-						}
+						"url": "http://localhost:8901/helloPostJson"
 					},
 					"response": []
 				}

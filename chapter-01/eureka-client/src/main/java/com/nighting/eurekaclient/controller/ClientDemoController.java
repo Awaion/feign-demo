@@ -1,5 +1,6 @@
 package com.nighting.eurekaclient.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +20,10 @@ public class ClientDemoController {
      * @return
      */
     @GetMapping("/helloGet")
-    public Map<String, Object> helloGet(String name) {
+    public Map<String, Object> helloGet(String name, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
+        map.put("age", age);
         return map;
     }
 
@@ -34,9 +36,10 @@ public class ClientDemoController {
      * @return
      */
     @PostMapping("/helloPostFormData")
-    public Map<String, Object> helloPostFormData(String name) {
+    public Map<String, Object> helloPostFormData(String name, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
+        map.put("age", age);
         return map;
     }
 
@@ -49,9 +52,10 @@ public class ClientDemoController {
      * @return
      */
     @PostMapping("/helloPostUrlencoded")
-    public Map<String, Object> helloPostUrlencoded(String name) {
+    public Map<String, Object> helloPostUrlencoded(String name, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
+        map.put("age", age);
         return map;
     }
 
@@ -64,9 +68,10 @@ public class ClientDemoController {
      * @return
      */
     @PostMapping("/helloPostText")
-    public Map<String, Object> helloPostText(@RequestBody String name) {
+    public Map<String, Object> helloPostText(@RequestBody String name, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
+        map.put("age", age);
         return map;
     }
 
@@ -79,9 +84,10 @@ public class ClientDemoController {
      * @return
      */
     @PostMapping("/helloPostTextPlain")
-    public Map<String, Object> helloPostTextPlain(@RequestBody String name) {
+    public Map<String, Object> helloPostTextPlain(@RequestBody String name, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
+        map.put("age", age);
         return map;
     }
 
@@ -93,22 +99,10 @@ public class ClientDemoController {
      * @return
      */
     @PostMapping("/helloPostJson")
-    public Map<String, Object> helloPostJson(@RequestBody Map<String, Object> param) {
+    public Map<String, Object> helloPostJson(@RequestBody Map<String, Object> param, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", param.get("name"));
-        return map;
-    }
-
-    /**
-     * POST请求
-     * application/javascript
-     *
-     * @return
-     */
-    @PostMapping("/helloPostJavascript")
-    public Map<String, Object> helloPostJavascript(@RequestBody Map<String, Object> param) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", param.get("name"));
+        map.put("age", age);
         return map;
     }
 
@@ -118,10 +112,12 @@ public class ClientDemoController {
      *
      * @return
      */
-    @PostMapping("/helloPostXml")
-    public Map<String, Object> helloPostXml(@RequestBody Map<String, Object> param) {
+    @PostMapping(value = "/helloPostXml", consumes = {MediaType.APPLICATION_XML_VALUE})
+    public Map<String, Object> helloPostXml(@RequestBody XmlParam xml, Integer age) {
         Map<String, Object> map = new HashMap<>();
-        map.put("name", param.get("name"));
+        map.put("name", xml.getName());
+        map.put("xmlAge", xml.getAge());
+        map.put("age", age);
         return map;
     }
 
@@ -131,23 +127,12 @@ public class ClientDemoController {
      *
      * @return
      */
-    @PostMapping("/helloPostTextXml")
-    public Map<String, Object> helloPostTextXml(@RequestBody Map<String, Object> param) {
+    @PostMapping(value = "/helloPostTextXml", consumes = MediaType.TEXT_XML_VALUE)
+    public Map<String, Object> helloPostTextXml(@RequestBody XmlParam xml, Integer age) {
         Map<String, Object> map = new HashMap<>();
-        map.put("name", param.get("name"));
-        return map;
-    }
-
-    /**
-     * POST请求
-     * text/html
-     *
-     * @return
-     */
-    @PostMapping("/helloPostTextHtml")
-    public Map<String, Object> helloPostTextHtml(@RequestBody Map<String, Object> param) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", param.get("name"));
+        map.put("xmlName", xml.getName());
+        map.put("xmlAge", xml.getAge());
+        map.put("age", age);
         return map;
     }
 

@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "bc10d3a2-eca5-458f-bcdc-b11a0e562f44",
+		"_postman_id": "f4954527-9742-481d-97bb-401cf28e093a",
 		"name": "Feign",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -21,7 +21,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8801/helloGet?name=urlname",
+									"raw": "http://localhost:8801/helloGet?name=urlname&age=18",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -34,6 +34,10 @@
 										{
 											"key": "name",
 											"value": "urlname"
+										},
+										{
+											"key": "age",
+											"value": "18"
 										}
 									]
 								}
@@ -52,10 +56,25 @@
 											"key": "name",
 											"value": "name",
 											"type": "text"
+										},
+										{
+											"key": "age",
+											"value": "18",
+											"type": "text"
 										}
 									]
 								},
-								"url": "http://localhost:8801/helloPostFormData"
+								"url": {
+									"raw": "http://localhost:8801/helloPostFormData",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostFormData"
+									]
+								}
 							},
 							"response": []
 						},
@@ -76,12 +95,27 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "name",
+											"value": "鲁智深",
+											"type": "text"
+										},
+										{
+											"key": "age",
+											"value": "18",
 											"type": "text"
 										}
 									]
 								},
-								"url": "http://localhost:8801/helloPostUrlencoded"
+								"url": {
+									"raw": "http://localhost:8801/helloPostUrlencoded",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostUrlencoded"
+									]
+								}
 							},
 							"response": []
 						},
@@ -92,9 +126,25 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "text"
+									"raw": "text鲁智深"
 								},
-								"url": "http://localhost:8801/helloPostText"
+								"url": {
+									"raw": "http://localhost:8801/helloPostText?age=18",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostText"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "18"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -114,7 +164,23 @@
 									"mode": "raw",
 									"raw": "text"
 								},
-								"url": "http://localhost:8801/helloPostTextPlain"
+								"url": {
+									"raw": "http://localhost:8801/helloPostTextPlain?age=19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostTextPlain"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "19"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -132,34 +198,30 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"body\"\n}"
+									"raw": "{\n    \"name\": \"body\",\n    \"age\": 18\n}"
 								},
-								"url": "http://localhost:8801/helloPostJson"
+								"url": {
+									"raw": "http://localhost:8801/helloPostJson?age=19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostJson"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "19"
+										}
+									]
+								}
 							},
 							"response": []
 						},
 						{
-							"name": "07helloPostJavascript",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/javascript"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"body\"\n}"
-								},
-								"url": "http://localhost:8801/helloPostJavascript"
-							},
-							"response": []
-						},
-						{
-							"name": "08helloPostXml",
+							"name": "07helloPostXml",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -172,14 +234,30 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"body\"\n}"
+									"raw": "<xml>\n    <name>鲁智深</name>\n    <age>19</age>\n</xml>"
 								},
-								"url": "http://localhost:8801/helloPostXml"
+								"url": {
+									"raw": "http://localhost:8801/helloPostXml?age=20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostXml"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "20"
+										}
+									]
+								}
 							},
 							"response": []
 						},
 						{
-							"name": "09helloPostTextXml",
+							"name": "08helloPostTextXml",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -192,29 +270,25 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"body\"\n}"
+									"raw": "<xml>\n    <name>鲁智深</name>\n    <age>19</age>\n</xml>"
 								},
-								"url": "http://localhost:8801/helloPostTextXml"
-							},
-							"response": []
-						},
-						{
-							"name": "10helloPostTextHtml",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "text/html",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"body\"\n}"
-								},
-								"url": "http://localhost:8801/helloPostTextHtml"
+								"url": {
+									"raw": "http://localhost:8801/helloPostTextXml?age=17",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8801",
+									"path": [
+										"helloPostTextXml"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "17"
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -241,7 +315,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8801/helloGet"
+						"url": {
+							"raw": "http://localhost:8801/helloGet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8801",
+							"path": [
+								"helloGet"
+							]
+						}
 					},
 					"response": []
 				},
@@ -260,7 +344,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8801/helloPost"
+						"url": {
+							"raw": "http://localhost:8801/helloPost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8801",
+							"path": [
+								"helloPost"
+							]
+						}
 					},
 					"response": []
 				},
@@ -279,7 +373,17 @@
 							"mode": "raw",
 							"raw": "text"
 						},
-						"url": "http://localhost:8801/helloPostText"
+						"url": {
+							"raw": "http://localhost:8801/helloPostText",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8801",
+							"path": [
+								"helloPostText"
+							]
+						}
 					},
 					"response": []
 				},
@@ -304,7 +408,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8801/helloPostJson"
+						"url": {
+							"raw": "http://localhost:8801/helloPostJson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8801",
+							"path": [
+								"helloPostJson"
+							]
+						}
 					},
 					"response": []
 				},
@@ -358,7 +472,17 @@
 								}
 							]
 						},
-						"url": "http://localhost:8901/helloPost"
+						"url": {
+							"raw": "http://localhost:8901/helloPost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8901",
+							"path": [
+								"helloPost"
+							]
+						}
 					},
 					"response": []
 				},
@@ -371,7 +495,17 @@
 							"mode": "raw",
 							"raw": "text"
 						},
-						"url": "http://localhost:8901/helloPostText"
+						"url": {
+							"raw": "http://localhost:8901/helloPostText",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8901",
+							"path": [
+								"helloPostText"
+							]
+						}
 					},
 					"response": []
 				},
@@ -391,7 +525,17 @@
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"body\"\n}"
 						},
-						"url": "http://localhost:8901/helloPostJson"
+						"url": {
+							"raw": "http://localhost:8901/helloPostJson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8901",
+							"path": [
+								"helloPostJson"
+							]
+						}
 					},
 					"response": []
 				}

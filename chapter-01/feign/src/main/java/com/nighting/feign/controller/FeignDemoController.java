@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -26,10 +25,7 @@ public class FeignDemoController {
      */
     @GetMapping("/helloGet")
     public Map<String, Object> helloGet(String name, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloGet(name, age);
     }
 
     /**
@@ -42,10 +38,7 @@ public class FeignDemoController {
      */
     @PostMapping("/helloPostFormData")
     public Map<String, Object> helloPostFormData(String name, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostFormData(name, age);
     }
 
     /**
@@ -58,10 +51,7 @@ public class FeignDemoController {
      */
     @PostMapping("/helloPostUrlencoded")
     public Map<String, Object> helloPostUrlencoded(String name, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostUrlencoded(name, age);
     }
 
     /**
@@ -74,10 +64,7 @@ public class FeignDemoController {
      */
     @PostMapping("/helloPostText")
     public Map<String, Object> helloPostText(@RequestBody String name, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostText(name, age);
     }
 
     /**
@@ -90,10 +77,7 @@ public class FeignDemoController {
      */
     @PostMapping("/helloPostTextPlain")
     public Map<String, Object> helloPostTextPlain(@RequestBody String name, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostTextPlain(name, age);
     }
 
     /**
@@ -105,10 +89,7 @@ public class FeignDemoController {
      */
     @PostMapping("/helloPostJson")
     public Map<String, Object> helloPostJson(@RequestBody Map<String, Object> param, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", param.get("name"));
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostJson(param, age);
     }
 
     /**
@@ -119,11 +100,7 @@ public class FeignDemoController {
      */
     @PostMapping(value = "/helloPostXml", consumes = {MediaType.APPLICATION_XML_VALUE})
     public Map<String, Object> helloPostXml(@RequestBody XmlParam xml, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", xml.getName());
-        map.put("xmlAge", xml.getAge());
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostXml(xml, age);
     }
 
     /**
@@ -134,11 +111,7 @@ public class FeignDemoController {
      */
     @PostMapping(value = "/helloPostTextXml", consumes = MediaType.TEXT_XML_VALUE)
     public Map<String, Object> helloPostTextXml(@RequestBody XmlParam xml, Integer age) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("xmlName", xml.getName());
-        map.put("xmlAge", xml.getAge());
-        map.put("age", age);
-        return map;
+        return feignEurekaClient.helloPostTextXml(xml, age);
     }
 
 }

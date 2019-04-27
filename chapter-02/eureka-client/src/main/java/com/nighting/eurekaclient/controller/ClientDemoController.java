@@ -1,9 +1,7 @@
 package com.nighting.eurekaclient.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -12,44 +10,134 @@ import java.util.Map;
 @RestController
 public class ClientDemoController {
 
+    /**
+     * GET请求
+     * 从url获取请求参数
+     *
+     * @param name
+     * @return
+     */
     @GetMapping("/helloGet")
-    public Map<String, Object> helloGet(String name, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("getAuthType", request.getAuthType());
-        map.put("getContextPath", request.getContextPath());
-        map.put("getCookies", request.getCookies());
-        map.put("getDateHeader", request.getDateHeader("yyyy-MM-dd HH:mm:ss"));
-        map.put("getHeaderName", request.getHeader("name"));
-        map.put("getHeaderContentType", request.getHeader("Content-Type"));
+    public Map<String, Object> helloGet(@RequestHeader String headerName, @RequestHeader Integer headerAge, String name, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, name, age);
         return map;
     }
 
-    @PostMapping("/helloPost")
-    public Map<String, Object> helloPost(String name, HttpServletRequest request) {
+    /**
+     * POST请求
+     * 从表单获取请求参数
+     * multipart/form-data,它会将表单的数据处理为一条消息，以标签为单元，用分隔符分开。既可以上传键值对，也可以上传文件
+     *
+     * @param name
+     * @return
+     */
+    @PostMapping("/helloPostFormData")
+    public Map<String, Object> helloPostFormData(HttpServletRequest request, String name, Integer age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
-        map.put("getHeaderName", request.getHeader("name"));
-        map.put("getHeaderContentType", request.getHeader("Content-Type"));
+        map.put("age", age);
+        map.put("headerName", request.getHeader("headerName"));
+        map.put("headerAge", request.getHeader("headerAge"));
         return map;
     }
 
+    /**
+     * POST请求
+     * 从表单获取请求参数
+     * application/x-www-form-urlencoded：只能上传键值对，并且键值对都是间隔分开的。
+     *
+     * @param name
+     * @return
+     */
+    @PostMapping("/helloPostUrlencoded")
+    public Map<String, Object> helloPostUrlencoded(@RequestHeader String headerName, @RequestHeader Integer headerAge, String name, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, name, age);
+        return map;
+    }
+
+    /**
+     * POST请求
+     * 获取文本信息,没有key值,只有value
+     * text
+     *
+     * @param name
+     * @return
+     */
     @PostMapping("/helloPostText")
-    public Map<String, Object> helloPostText(@RequestBody String name, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("getHeaderName", request.getHeader("name"));
-        map.put("getHeaderContentType", request.getHeader("Content-Type"));
+    public Map<String, Object> helloPostText(@RequestHeader String headerName, @RequestHeader Integer headerAge, @RequestBody String name, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, name, age);
         return map;
     }
 
-    @PostMapping("/helloPostJson")
-    public Map<String, Object> helloPostJson(@RequestBody Map<String, Object> param, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", param.get("name"));
-        map.put("getHeaderName", request.getHeader("name"));
-        map.put("getHeaderContentType", request.getHeader("Content-Type"));
+    /**
+     * POST请求
+     * 获取文本信息,没有key值,只有value
+     * text/plain: 没有格式的文本
+     *
+     * @param name
+     * @return
+     */
+    @PostMapping("/helloPostTextPlain")
+    public Map<String, Object> helloPostTextPlain(@RequestHeader String headerName, @RequestHeader Integer headerAge, @RequestBody String name, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, name, age);
         return map;
     }
+
+    /**
+     * POST请求
+     * json字符串
+     * application/json
+     *
+     * @return
+     */
+    @PostMapping("/helloPostJson")
+    public Map<String, Object> helloPostJson(@RequestHeader String headerName, @RequestHeader Integer headerAge, @RequestBody Map<String, Object> param, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, (String) param.get("name"), age);
+        return map;
+    }
+
+    /**
+     * POST请求
+     * application/xml
+     *
+     * @return
+     */
+    @PostMapping(value = "/helloPostXml", consumes = {MediaType.APPLICATION_XML_VALUE})
+    public Map<String, Object> helloPostXml(@RequestHeader String headerName, @RequestHeader Integer headerAge, @RequestBody XmlParam xml, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, xml, age);
+        return map;
+    }
+
+    /**
+     * POST请求
+     * text/xml
+     *
+     * @return
+     */
+    @PostMapping(value = "/helloPostTextXml", consumes = MediaType.TEXT_XML_VALUE)
+    public Map<String, Object> helloPostTextXml(@RequestHeader String headerName, @RequestHeader Integer headerAge, @RequestBody XmlParam xml, Integer age) {
+        Map<String, Object> map = getStringObjectMap(headerName, headerAge, xml, age);
+        return map;
+    }
+
+    private Map<String, Object> getStringObjectMap(@RequestHeader String headerName, @RequestHeader Integer headerAge, String name, Integer age) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("age", age);
+        map.put("headerName", headerName);
+        map.put("headerAge", headerAge);
+        return map;
+    }
+
+    private Map<String, Object> getStringObjectMap(@RequestHeader String headerName, @RequestHeader Integer headerAge, @RequestBody XmlParam xml, Integer age) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("xmlName", xml.getName());
+        map.put("xmlAge", xml.getAge());
+        map.put("age", age);
+        map.put("headerName", headerName);
+        map.put("headerAge", headerAge);
+        return map;
+    }
+
 
 }
